@@ -1,25 +1,31 @@
 import React from 'react';
-import UsersList from 'components/organisms/UsersList/UsersList';
 import GlobalStyle from 'assets/styles/GlobalStyle';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { theme } from 'assets/styles/theme';
-
-const StyledContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${({ theme }) => theme.colors.lightGrey};
-  height: 100vh;
-  width: 100vw;
-`;
+import UserTemplate from 'components/templates/UserTemplate/UserTemplate';
+import Dashboard from './Dashboard';
+import AddUser from './AddUser';
+import UsersProvider from 'providers/UsersProvider';
 
 const Root = () => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <StyledContainer>
-      <UsersList />
-    </StyledContainer>
-  </ThemeProvider>
+  <Router>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <UserTemplate>
+        <UsersProvider>
+          <Switch>
+            <Route path="/add-user">
+              <AddUser />
+            </Route>
+            <Route path="/">
+              <Dashboard />
+            </Route>
+          </Switch>
+        </UsersProvider>
+      </UserTemplate>
+    </ThemeProvider>
+  </Router>
 );
 
 export default Root;

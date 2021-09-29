@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context as ctx } from 'providers/UsersProvider';
 import PropTypes from 'prop-types';
 import {
   StyledContainer,
@@ -8,18 +9,22 @@ import {
 } from './UsersListItem.styles';
 import IconButton from 'components/atoms/IconButton/IconButton';
 
-const UsersListItem = ({ data: { fullName, average, attendance = 0 }, deleteFn }) => (
-  <StyledContainer>
-    <StyledAverageIndicator>{average}</StyledAverageIndicator>
-    <StyledParagraph fontSize="l" isBold>
-      {fullName}
-    </StyledParagraph>
-    <StyledParagraph>Attendance: {attendance}%</StyledParagraph>
-    <StyledButtonsWrapper>
-      <IconButton tooltipText="asdf asd as as asdf" onClick={() => deleteFn(fullName)} />
-    </StyledButtonsWrapper>
-  </StyledContainer>
-);
+const UsersListItem = ({ data: { fullName, average, attendance = 0 } }) => {
+  const { handleDelete } = useContext(ctx);
+
+  return (
+    <StyledContainer>
+      <StyledAverageIndicator>{average}</StyledAverageIndicator>
+      <StyledParagraph fontSize="l" isBold>
+        {fullName}
+      </StyledParagraph>
+      <StyledParagraph>Attendance: {attendance}%</StyledParagraph>
+      <StyledButtonsWrapper>
+        <IconButton tooltipText="asdf asd as as asdf" onClick={() => handleDelete(fullName)} />
+      </StyledButtonsWrapper>
+    </StyledContainer>
+  );
+};
 
 UsersListItem.propTypes = {
   data: PropTypes.shape({
@@ -27,7 +32,6 @@ UsersListItem.propTypes = {
     average: PropTypes.number.isRequired,
     attendance: PropTypes.number,
   }),
-  deleteFn: PropTypes.func.isRequired,
 };
 
 export default UsersListItem;

@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
-
-import { usersData as initialData } from 'data/users';
+import React, { useContext } from 'react';
+import { Context as ctx } from 'providers/UsersProvider';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
-import { StyledContainer } from './UsersList.styles';
+import Wrapper from 'components/atoms/Wrapper/Wrapper';
 
 const UsersList = () => {
-  const [usersData, setUsersData] = useState(initialData);
-
-  const deleteUser = (fullName) =>
-    setUsersData((prevState) => prevState.filter((item) => item.fullName !== fullName));
+  const { users } = useContext(ctx);
 
   return (
-    <StyledContainer>
-      {usersData.map((userData) => (
-        <UsersListItem data={userData} deleteFn={deleteUser} />
+    <Wrapper>
+      {users.map((userData) => (
+        <UsersListItem data={userData} />
       ))}
-    </StyledContainer>
+    </Wrapper>
   );
 };
 

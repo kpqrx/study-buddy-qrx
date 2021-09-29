@@ -4,7 +4,7 @@ export const StyledButton = styled.button`
   border-radius: 50%;
   width: 32px;
   aspect-ratio: 1 / 1;
-  background-color: ${({ theme }) => theme.colors.grey};
+  background-color: ${({ theme }) => theme.colors.gray.dark};
   display: flex;
   align-items: center;
   justify-content: center;

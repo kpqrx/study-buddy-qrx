@@ -11,7 +11,7 @@ export const StyledContainer = styled.li`
   grid-template-columns: 34px 1fr 0.5fr;
   grid-template-rows: repeat(2, 1fr);
   column-gap: 24px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray.light};
   width: 100%;
   align-items: center;
   padding: 30px 0;
@@ -28,12 +28,12 @@ export const StyledButtonsWrapper = styled.div`
   border-radius: 10px;
   padding: 12px 28px;
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.lightGrey};
+  background-color: ${({ theme }) => theme.colors.gray.xLight};
   grid-row: 1 / 3;
 `;
 
 export const StyledParagraph = styled(Paragraph)`
-  color: ${({ theme }) => theme.colors.darkGrey};
+  color: ${({ theme }) => theme.colors.gray.xDark};
   grid-column: 2 / 3;
 
   &:nth-of-type(1) {
